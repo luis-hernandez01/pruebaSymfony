@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}See product{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+    <div class="container">
+        <h1>Products</h1>
+
+        {{ include('product/delete.html.twig') }}
+
+
+        <a class="btn btn-warning" role="button" href="{{ path('productEdit', {'id': product.id}) }}">Edit</a>
+    </div>
+    </div>
+    </div>
+
+    </div><!--//row-->
+    </div><!--//container-fluid-->
+
+    <br>
+    <br>
+    <table class="table table-hover">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ product.id }}</td>
+        </tr>
+        <tr>
+            <th>Code</th>
+            <td>{{ product.code }}</td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td>{{ product.name }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ product.description }}</td>
+        </tr>
+        <tr>
+            <th>Brand</th>
+            <td>{{ product.brand }}</td>
+        </tr>
+        <tr>
+            <th>Category</th>
+            <td>{{ product.category }}</td>
+        </tr>
+
+        </tbody>
+    </table>
+
+    <a class="btn btn-info" role="button" href="{{ path('productIndex') }}">Go to products</a>
+
+
+    </div>
+
+{% endblock %}

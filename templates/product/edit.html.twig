@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Views edit products{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+    <div class="container">
+        <h1>Edit Product</h1>
+
+
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <div class="form-group">
+            <label class="col-md-12 control-label" for="submit"></label>
+            <div class="col-md-12">
+                <button class="btn btn-success">{{ button_label|default('Save') }}</button>
+                {{ form_end(form) }}
+
+                <a class="btn btn-info" role="button" href="{{ path('productIndex') }}">Go to products</a>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

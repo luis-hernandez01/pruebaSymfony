@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Views category{% endblock %}
+
+{% block body %}
+
+    {{ parent() }}
+
+
+
+    <div class="container">
+
+        <h1>Category</h1>
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <div class="form-group">
+            <label class="col-md-12 control-label" for="submit"></label>
+            <div class="col-md-12">
+                <button class="btn btn-success">{{ button_label|default('Find') }}</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {# table body #}
+            {% for categoryView in categoryViews %}
+                <tr>
+                    <td>{{ categoryView.id }}</td>
+                    <td>{{ categoryView.name }}</td>
+
+                    <td>
+                        <a class="btn btn-info" role="button" href="{{ path('categoryShow', {'id': categoryView.id}) }}">Show</a>
+                        <a class="btn btn-warning" role="button" href="{{ path('categoryEdit', {'id': categoryView.id}) }}">Edit</a>
+                        <a class="btn btn-danger" role="button" href="{{ path('categoryShow', {'id': categoryView.id}) }}">Delete</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {# display navigation #}
+        <div class="navigation">
+            {{ knp_pagination_render(categoryViews) }}
+        </div>
+
+
+
+
+        <a class="btn btn-success" role="button" href="{{ path('newCategory') }}">Create new category</a>
+        <a class="btn btn-success" role="button" href="{{ path('exportCategory') }}">Export categories</a>
+    </div>
+{% endblock %}

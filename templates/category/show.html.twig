@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}See category{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+    <div class="container">
+        <h1>Category</h1>
+
+        {{ include('category/delete.html.twig') }}
+
+
+        <a class="btn btn-warning" role="button" href="{{ path('categoryEdit', {'id': category.id}) }}">Edit</a>
+    </div>
+    </div>
+    </div>
+
+    </div><!--//row-->
+    </div><!--//container-fluid-->
+
+    <br>
+    <br>
+    <table class="table table-hover">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ category.id }}</td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td>{{ category.name }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-info" role="button" href="{{ path('categoryList') }}">Go to category</a>
+
+
+    </div>
+
+{% endblock %}

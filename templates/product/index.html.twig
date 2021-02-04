@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Views products{% endblock %}
+
+{% block body %}
+
+    {{ parent() }}
+
+
+
+    <div class="container">
+
+        <h1>Products</h1>
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <div class="form-group">
+            <label class="col-md-12 control-label" for="submit"></label>
+            <div class="col-md-12">
+                <button class="btn btn-success">{{ button_label|default('Find') }}</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {# table body #}
+            {% for productView in productsViews %}
+                <tr>
+                    <td>{{ productView.id }}</td>
+                    <td>{{ productView.code }}</td>
+                    <td>{{ productView.name }}</td>
+                    <td>{{ productView.category }}</td>
+                    <td>
+                        <a class="btn btn-info" role="button" href="{{ path('productShow', {'id': productView.id}) }}">Show</a>
+                        <a class="btn btn-warning" role="button" href="{{ path('productEdit', {'id': productView.id}) }}">Edit</a>
+                        <a class="btn btn-danger" role="button" href="{{ path('productShow', {'id': productView.id}) }}">Delete</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {# display navigation #}
+        <div class="navigation">
+            {{ knp_pagination_render(productsViews) }}
+        </div>
+
+
+
+
+        <a class="btn btn-success" role="button" href="{{ path('newProduct') }}">Create new product</a>
+        <a class="btn btn-success" role="button" href="{{ path('exportProduct') }}">Export products</a>
+    </div>
+{% endblock %}
